@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.emc.ocopea.cloudfoundry</groupId>
+        <artifactId>cf-tools-parent</artifactId>
+        <version>0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>cf-services</artifactId>
+    <name>CF Demo Services</name>
+
+    <dependencies>
+        <!-- Resource Provider -->
+        <!-- Don't use some dev-mode stuff, use PG and undertow instead -->
+        <dependency>
+            <groupId>com.emc.ocopea.microservice</groupId>
+            <artifactId>microservice-dev-deployment-stack</artifactId>
+            <version>${microservice.runtime.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.emc.ocopea.microservice</groupId>
+                    <artifactId>dev-data-source-provider</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.emc.ocopea.microservice</groupId>
+                    <artifactId>dev-web-server-provider</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.emc.ocopea.microservice</groupId>
+                    <artifactId>dev-blob-store-provider</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.emc.ocopea.microservice</groupId>
+                    <artifactId>dev-scheduler-provider</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- using specific implementation since we are creating the schema and need access -->
+        <dependency>
+            <groupId>com.emc.ocopea.microservice</groupId>
+            <artifactId>microservice-standalone-postgres-datasource-impl</artifactId>
+            <version>${microservice.runtime.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.emc.ocopea.microservice</groupId>
+            <artifactId>undertow-web-server-provider</artifactId>
+            <version>${microservice.runtime.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.emc.ocopea.microservice</groupId>
+            <artifactId>microservice-standalone-postgres-blobstore-impl</artifactId>
+            <version>${microservice.runtime.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.emc.ocopea.microservice</groupId>
+            <artifactId>configuration-client</artifactId>
+            <version>${microservice.runtime.version}</version>
+        </dependency>
+
+        <!-- Bridges from other logging frameworks to slf4j -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>log4j-over-slf4j</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+    </dependencies>
+</project>
+

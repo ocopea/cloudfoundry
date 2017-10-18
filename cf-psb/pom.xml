@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.emc.ocopea.cloudfoundry</groupId>
+        <artifactId>cloudfoundry-parent</artifactId>
+        <version>0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>cf-psb-parent</artifactId>
+    <name>Parent project for Cloud Foundry PaaS Broker</name>
+    <packaging>pom</packaging>
+
+
+    <modules>
+        <module>psb-service</module>
+        <module>cf-psb-cf-deployment</module>
+        <module>cf-testing-dependencies</module>
+    </modules>
+
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.emc.ocopea.util</groupId>
+                <artifactId>common-util</artifactId>
+                <version>${ocopea.utilities.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <repositories>
+        <!-- must repeat repository on all root poms so maven can locate the ocopea parent pom -->
+        <repository>
+            <id>ocopea-dependencies</id>
+            <name>dependencies</name>
+            <url>https://raw.githubusercontent.com/ocopea/artifactory/repository/</url>
+        </repository>
+
+        <!-- Adding spring repo for using the cf client -->
+        <repository>
+            <id>spring-milestone</id>
+            <name>Spring Milestones</name>
+            <url>http://repo.spring.io/milestone</url>
+        </repository>
+        <repository>
+            <id>spring-releases</id>
+            <name>Spring Releases</name>
+            <url>http://repo.spring.io/release</url>
+        </repository>
+        <repository>
+            <id>spring-snapshots</id>
+            <name>Spring Snapshots</name>
+            <url>http://repo.spring.io/snapshot</url>
+        </repository>
+    </repositories>
+
+</project>
+

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.emc.ocopea.cloudfoundry</groupId>
+		<artifactId>cf-tools-parent</artifactId>
+		<version>0.1-SNAPSHOT</version>
+	</parent>
+
+    <artifactId>cf-triple-apps-parent</artifactId>
+    <name>Ocopea CF Triple Apps Parent</name>
+    <packaging>pom</packaging>
+    <modules>
+		<module>configurator</module>
+        <module>configuration</module>
+		<module>mysql-dsb</module>
+		<module>orcs</module>
+    </modules>
+
+	<profiles>
+		<profile>
+			<id>build-app</id>
+			<activation>
+				<file>
+					<exists>src</exists>
+				</file>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-assembly-plugin</artifactId>
+						<dependencies>
+							<dependency>
+								<groupId>com.emc.ocopea.cloudfoundry</groupId>
+								<artifactId>cf-apps-assembly-descriptor</artifactId>
+								<version>${project.version}</version>
+							</dependency>
+						</dependencies>
+						<executions>
+							<execution>
+								<id>make-app-jar</id>
+								<phase>package</phase>
+								<goals>
+									<goal>single</goal>
+								</goals>
+								<configuration>
+									<archive>
+										<manifest>
+											<addClasspath>true</addClasspath>
+											<classpathPrefix>lib/</classpathPrefix>
+											<mainClass>${cloudFoundry.module.mainClass}</mainClass>
+										</manifest>
+									</archive>
+									<descriptorRefs>
+										<descriptorRef>cf-assembly</descriptorRef>
+									</descriptorRefs>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.emc.ocopea.cloudfoundry</groupId>
+			<artifactId>cf-services</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+	</dependencies>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.jboss.spec.javax.servlet</groupId>
+				<artifactId>jboss-servlet-api_3.1_spec</artifactId>
+				<version>1.0.0.Final</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.jboss.spec.javax.annotation</groupId>
+				<artifactId>jboss-annotations-api_1.2_spec</artifactId>
+				<version>1.0.0.Final</version>
+				<scope>compile</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+</project>
+

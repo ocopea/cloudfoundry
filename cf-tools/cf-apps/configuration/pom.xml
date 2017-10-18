@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.emc.ocopea.cloudfoundry</groupId>
+        <artifactId>cf-triple-apps-parent</artifactId>
+        <version>0.1-SNAPSHOT</version>
+    </parent>
+
+    <properties>
+        <cloudFoundry.module.mainClass>com.emc.ocopea.demo.cftriple.ConfigurationRunner</cloudFoundry.module.mainClass>
+    </properties>
+
+    <artifactId>cf-triple-configuration-application</artifactId>
+    <name>Ocopea CF Triple Apps' Configuration Application</name>
+    <dependencies>
+        <!--running the built in configuration service -->
+        <dependency>
+            <groupId>com.emc.ocopea.microservice</groupId>
+            <artifactId>configuration-service</artifactId>
+            <version>${microservice.runtime.version}</version>
+        </dependency>
+
+        <!-- dependencies to initialize configuration and DB -->
+        <dependency>
+            <groupId>com.emc.ocopea.microservice</groupId>
+            <artifactId>configuration-bootstrap</artifactId>
+            <version>${microservice.runtime.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.emc.ocopea.cloudfoundry</groupId>
+            <artifactId>cf-external-resource-manager</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.emc.ocopea.microservice</groupId>
+            <artifactId>object-store-pgsql-schema-bootstrap</artifactId>
+            <version>${microservice.runtime.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.emc.ocopea.hub</groupId>
+            <artifactId>hub-repository-schema</artifactId>
+            <version>${ocopea.orcs.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.emc.ocopea.util</groupId>
+            <artifactId>common-util</artifactId>
+            <version>${ocopea.utilities.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.emc.ocopea.site</groupId>
+            <artifactId>site-repository-schema</artifactId>
+            <version>${ocopea.orcs.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.emc.ocopea.site</groupId>
+            <artifactId>protection-repository-schema</artifactId>
+            <version>${ocopea.orcs.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.emc.ocopea.orcs</groupId>
+            <artifactId>shpan-crb-service</artifactId>
+            <version>${ocopea.orcs.version}</version>
+        </dependency>
+    </dependencies>
+</project>
+
