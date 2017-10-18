@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.emc.ocopea.cloudfoundry</groupId>
+        <artifactId>cloudfoundry-parent</artifactId>
+        <version>0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>cf-deployer</artifactId>
+    <name>CF Triple Apps Deployer</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.emc.ocopea.cloudfoundry</groupId>
+            <artifactId>cf-triple-apps-client</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.emc.ocopea.cloudfoundry</groupId>
+            <artifactId>cf-triple-configurator</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.emc.ocopea.cloudfoundry</groupId>
+            <artifactId>cf-triple-configuration-application</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.emc.ocopea.cloudfoundry</groupId>
+            <artifactId>orcs-application</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.emc.ocopea.cloudfoundry</groupId>
+            <artifactId>cf-psb-cf-application</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.emc.ocopea.cloudfoundry</groupId>
+            <artifactId>cf-triple-mysql-dsb-application</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+<!--
+        <dependency>
+            <groupId>com.emc.ocopea.crb</groupId>
+            <artifactId>pcf-fs-crb</artifactId>
+            <version>${ocopea.fscrb.version}</version>
+            <classifier>cf-app</classifier>
+            <type>bin</type>
+        </dependency>
+-->
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-cf-apps</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.outputDirectory}/cf-apps-jars</outputDirectory>
+                            <stripVersion>true</stripVersion>
+                            <stripClassifier>true</stripClassifier>
+                            <classifier>cf-app</classifier>
+                            <excludeTransitive>true</excludeTransitive>
+                            <useSubDirectoryPerArtifact>true</useSubDirectoryPerArtifact>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-standalone-apps</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.outputDirectory}</outputDirectory>
+                            <stripVersion>true</stripVersion>
+                            <stripClassifier>true</stripClassifier>
+                            <classifier>standalone-app</classifier>
+                            <excludeTransitive>true</excludeTransitive>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <execution>
+                        <id>rename-jars-to-zip</id>
+                        <phase>process-resources</phase>
+                        <configuration>
+                            <target>
+                                <move todir="${project.build.outputDirectory}">
+                                    <fileset dir="${project.build.outputDirectory}/cf-apps-jars" />
+                                    <mapper type="glob" from="*.jar" to="*.zip" />
+                                </move>
+                                <move todir="${project.build.outputDirectory}">
+                                    <fileset dir="${project.build.outputDirectory}/cf-apps-jars" />
+                                    <mapper type="glob" from="*.bin" to="*.bin" />
+                                </move>
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>fix-shell-permissions</id>
+                        <phase>integration-test</phase>
+                        <configuration>
+                            <target>
+                                <chmod file="target/classes/*.sh" perm="+x" />
+                                <!--<chmod file="target/classes/crb-fs-go-cf-app-bin/*.bin" perm="+x" />-->
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+</project>
+

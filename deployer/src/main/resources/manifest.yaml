@@ -1,0 +1,51 @@
+---
+applications:
+- name: ${PREFIX}-configurator
+  host: ${PREFIX}-configurator
+  path: cf-triple-configurator-cf-app-jar/cf-triple-configurator.zip
+  env:
+    OCOPEA_CONFIG_HOST_NAME: ${PREFIX}-configuration
+  services:
+   - postgres
+- name: ${PREFIX}-conf
+  host: ${PREFIX}-configuration
+  path: cf-triple-configuration-application-cf-app-jar/cf-triple-configuration-application.zip
+  env:
+    CF_API_HOST: ${CF_API_HOST}
+    SCHEMA_PREFIX: ${PREFIX}
+  services:
+   - postgres
+- name: ${PREFIX}-orcs
+  host: ${PREFIX}-orcs
+  path: orcs-application-cf-app-jar/orcs-application.zip
+  memory: 512M
+  env:
+    OCOPEA_CONFIG_HOST_NAME: ${PREFIX}-configuration
+    UAA_HOST: ${UAA_HOST}
+  services:
+   - postgres
+- name: ${PREFIX}-paas
+  host: ${PREFIX}-paas
+  path: cf-psb-cf-application-cf-app-jar/cf-psb-cf-application.zip
+  memory: 1536M
+  env:
+    CF_ORG: ${CF_ORG}
+    OCOPEA_CONFIG_HOST_NAME: ${PREFIX}-configuration
+- name: ${PREFIX}-mysql-dsb
+  host: ${PREFIX}-mysql-dsb
+  path: cf-triple-mysql-dsb-application-cf-app-jar/cf-triple-mysql-dsb-application.zip
+  memory: 512M
+  env:
+    CF_ORG: ${CF_ORG}
+    CF_SPACE: ${CF_SPACE}
+    OCOPEA_CONFIG_HOST_NAME: ${PREFIX}-configuration
+#- name: ${PREFIX}-crb-fs
+#  memory: 1024M
+#  buildpack: binary_buildpack
+#  stack: cflinuxfs2
+#  health-check-type: none
+#  host: ${PREFIX}-crb-fs-go
+#  path: crb-fs-go-cf-app-bin
+#  command: ./crb-fs-go.bin --host=
+#  services:
+#   - crb-mysql

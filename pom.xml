@@ -30,6 +30,7 @@
     <modules>
 	    <module>cf-tools</module>
 	    <module>cf-psb</module>
+	    <module>deployer</module>
     </modules>
 
     <repositories>
