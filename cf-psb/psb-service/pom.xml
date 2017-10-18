@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.emc.ocopea.cloudfoundry</groupId>
+        <artifactId>cf-psb-parent</artifactId>
+        <version>0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>cf-psb-service</artifactId>
+    <name>PSB Service For Cloud Foundry</name>
+    <description>PSB Implementation for Cloud foundry, allows running apps on cf</description>
+
+    <build>
+        <testResources>
+            <testResource>
+                <directory>${project.basedir}/src/test/resources</directory>
+                <filtering>true</filtering>
+            </testResource>
+        </testResources>
+    </build>
+    <dependencies>
+
+        <!-- PSB API we need to implement -->
+        <dependency>
+            <groupId>com.emc.ocopea.psb</groupId>
+            <artifactId>psb-java-web-api</artifactId>
+            <version>${ocopea.psb.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.emc.ocopea.util</groupId>
+            <artifactId>common-util</artifactId>
+        </dependency>
+
+        <!-- ms library for implementing our service -->
+        <dependency>
+            <groupId>com.emc.ocopea.microservice.api</groupId>
+            <artifactId>microservice-api</artifactId>
+            <version>${microservice.api.version}</version>
+        </dependency>
+
+        <!-- cf client external resource manager -->
+        <dependency>
+            <groupId>com.emc.ocopea.cloudfoundry</groupId>
+            <artifactId>cf-external-resource-manager</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+
+        <!-- Logging -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+
+        <!-- for implementing rest resources -->
+        <dependency>
+            <groupId>javax.ws.rs</groupId>
+            <artifactId>javax.ws.rs-api</artifactId>
+        </dependency>
+
+        <!-- for logs websockets -->
+        <dependency>
+            <groupId>javax.websocket</groupId>
+            <artifactId>javax.websocket-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.resteasy</groupId>
+            <artifactId>resteasy-client</artifactId>
+            <version>${resteasy.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.emc.ocopea.util</groupId>
+            <artifactId>rest-util</artifactId>
+            <version>${ocopea.utilities.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.spec.javax.servlet</groupId>
+            <artifactId>jboss-servlet-api_3.1_spec</artifactId>
+            <scope>provided</scope>
+            <version>1.0.0.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>com.emc.ocopea.microservice</groupId>
+            <artifactId>microservice-undertow-webserver-impl</artifactId>
+            <version>${microservice.runtime.version}</version>
+        </dependency>
+    </dependencies>
+</project>
+

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.emc.ocopea.cloudfoundry</groupId>
+        <artifactId>cf-triple-apps-parent</artifactId>
+        <version>0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>orcs-application</artifactId>
+    <name>Ocopea Joined Hub &amp; Site Application</name>
+
+    <properties>
+        <cloudFoundry.module.mainClass>com.emc.ocopea.demo.cftriple.OrchestrationRunner</cloudFoundry.module.mainClass>
+    </properties>
+
+<!--
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.emc.ocopea.cloudfoundry</groupId>
+                        <artifactId>cf-apps-assembly-descriptor</artifactId>
+                        <version>${project.version}</version>
+                    </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                        <id>make-app-jar</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <archive>
+                                <manifest>
+                                    <addClasspath>true</addClasspath>
+                                    <classpathPrefix>lib/</classpathPrefix>
+                                    <mainClass>com.emc.ocopea.demo.cftriple.OrchestrationRunner</mainClass>
+                                </manifest>
+                            </archive>
+                            <descriptorRefs>
+                                <descriptorRef>cf-assembly</descriptorRef>
+                            </descriptorRefs>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+-->
+    <dependencies>
+        <dependency>
+            <groupId>com.emc.ocopea.cloudfoundry</groupId>
+            <artifactId>cf-services</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <!-- Hub microservice -->
+        <dependency>
+            <groupId>com.emc.ocopea.hub</groupId>
+            <artifactId>hub-service-impl</artifactId>
+            <version>${ocopea.orcs.version}</version>
+        </dependency>
+
+        <!-- Hub webapp microservice -->
+        <dependency>
+            <groupId>com.emc.ocopea.hub</groupId>
+            <artifactId>hub-webapp-service</artifactId>
+            <version>${ocopea.orcs.version}</version>
+        </dependency>
+
+        <!-- Persistent messaging provider -->
+        <dependency>
+            <groupId>com.emc.ocopea.microservice</groupId>
+            <artifactId>persistent-messaging-provider</artifactId>
+            <version>${microservice.runtime.version}</version>
+        </dependency>
+
+        <!-- Persistent scheduler provider -->
+        <dependency>
+            <groupId>com.emc.ocopea.microservice</groupId>
+            <artifactId>persistent-scheduler-provider</artifactId>
+            <version>${microservice.runtime.version}</version>
+        </dependency>
+
+        <!-- Site microservice -->
+        <dependency>
+            <groupId>com.emc.ocopea.site</groupId>
+            <artifactId>site-service-impl</artifactId>
+            <version>${ocopea.orcs.version}</version>
+        </dependency>
+
+        <!-- Protection microservice -->
+        <dependency>
+            <groupId>com.emc.ocopea.site</groupId>
+            <artifactId>protection-service-impl</artifactId>
+            <version>${ocopea.orcs.version}</version>
+        </dependency>
+    </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.jboss.spec.javax.servlet</groupId>
+                <artifactId>jboss-servlet-api_3.1_spec</artifactId>
+                <version>1.0.0.Final</version>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.spec.javax.annotation</groupId>
+                <artifactId>jboss-annotations-api_1.2_spec</artifactId>
+                <version>1.0.0.Final</version>
+                <scope>compile</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>
+
