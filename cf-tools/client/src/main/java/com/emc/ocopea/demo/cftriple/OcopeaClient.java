@@ -663,7 +663,7 @@ public class OcopeaClient {
         api.addMavenArtifactRegistry(
                 siteUrl,
                 "shpanRegistry", // TODO: rename after ui bug fixed
-                "https://bintray.com/ocopea/ocopea-dependencies");
+                "https://dl.bintray.com/ocopea/central");
 
         /*
         api.addJiraIntegration(
