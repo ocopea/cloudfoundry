@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Copyright (c) [2017] Dell Inc. or its subsidiaries. All Rights Reserved.
 
 # IaaS domain patterns
 EMCIT_DOMAIN="isus"
