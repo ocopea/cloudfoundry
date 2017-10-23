@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Copyright (c) [2017] Dell Inc. or its subsidiaries. All Rights Reserved.
 pushd .
 cd "${0%/*}"
 CF_ORG=`cf t | grep "^Org:" | cut -d : -f2 | tr -d '[:space:]'`

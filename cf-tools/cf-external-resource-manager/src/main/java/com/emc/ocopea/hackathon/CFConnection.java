@@ -1,4 +1,5 @@
-// Copyright (c) [2018 - 2017] Dell Inc. or its subsidiaries. All Rights Reserved.
+// Copyright (c) [2017] Dell Inc. or its subsidiaries. All Rights Reserved.
+ 
 package com.emc.ocopea.hackathon;
 
 import org.cloudfoundry.client.CloudFoundryClient;
