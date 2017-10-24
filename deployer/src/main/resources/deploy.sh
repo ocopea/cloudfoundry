@@ -1,14 +1,8 @@
 #!/usr/bin/env bash
 # Copyright (c) [2017] Dell Inc. or its subsidiaries. All Rights Reserved.
 
-# IaaS domain patterns
-EMCIT_DOMAIN="isus"
-AZURE_DOMAIN="dellcloudnative"
-
-# Java buildpacks for CF on an IaaS
-JAVA_EMCIT="java_buildpack_offline_quondam"
-JAVA_AZURE="java_buildpack_offline"
-JAVA_BUILDPACK=""
+# Internal java buildpacks v3.10 for CF on an IaaS
+JAVA_BUILDPACK="java_buildpack_offline_quondam"
 
 EXIT_CODE=0
 
@@ -22,21 +16,6 @@ if [ $# -gt 0 ]; then
   PREFIX=$1
 else
   PREFIX=`whoami`
-fi
-
-if [[ $CF_API_HOST == *$EMCIT_DOMAIN* ]]; then
-    JAVA_BUILDPACK=$JAVA_EMCIT
-    echo "Using $JAVA_BUILDPACK build pack."
-fi
-
-if [[ $CF_API_HOST == *$AZURE_DOMAIN* ]]; then
-    JAVA_BUILDPACK=$JAVA_AZURE
-    echo "Using $JAVA_BUILDPACK build pack."
-fi
-
-if [[ $JAVA_BUILDPACK == "" ]]; then
-    echo "Could not find a valid build pack."
-    exit 1
 fi
 
 # Modify permission on executables
@@ -98,14 +77,14 @@ if [ -f "temp-${PREFIX}-configurator-manifest.yaml" ] && [ -f "temp-${PREFIX}-co
 
     export SCHEMA_PREFIX=${PREFIX}
     export CF_API_HOST=${CF_API_HOST}
-    NAZ_CONFIGURATOR_URL=`cf app ${PREFIX}-configurator | grep -E "^urls|^routes" | cut -d : -f2 | cut -d , -f1 | tr -d '[:space:]'`
+    OCOPEA_CONFIGURATOR_URL=`cf app ${PREFIX}-configurator | grep -E "^urls|^routes" | cut -d : -f2 | cut -d , -f1 | tr -d '[:space:]'`
     OCOPEA_CONFIG_URL=`cf app ${PREFIX}-conf | grep -E "^urls|^routes" | cut -d : -f2 | cut -d , -f1 | tr -d '[:space:]'`
 
     cf start ${PREFIX}-configurator
-    java -Dorg.jboss.logging.provider=slf4j -jar cf-triple-apps-client.jar preconf ${NAZ_CONFIGURATOR_URL}
+    java -Dorg.jboss.logging.provider=slf4j -jar cf-triple-apps-client.jar preconf ${OCOPEA_CONFIGURATOR_URL}
 
     cf start ${PREFIX}-conf
-    java -Dorg.jboss.logging.provider=slf4j -jar cf-triple-apps-client.jar conf ${NAZ_CONFIGURATOR_URL}
+    java -Dorg.jboss.logging.provider=slf4j -jar cf-triple-apps-client.jar conf ${OCOPEA_CONFIGURATOR_URL}
 
     cf a | grep "^${PREFIX}-" | cut -d ' ' -f1 | grep -v "^${PREFIX}-conf$" | grep -v "^${PREFIX}-configurator$" | xargs -P 10 -I app cf start app
     java -Dorg.jboss.logging.provider=slf4j -jar cf-triple-apps-client.jar bind ${OCOPEA_CONFIG_URL}

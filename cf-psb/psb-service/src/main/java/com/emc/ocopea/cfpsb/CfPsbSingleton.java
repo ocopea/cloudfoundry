@@ -153,9 +153,8 @@ public class CfPsbSingleton implements ServiceLifecycle {
             }
 
             // Push the app
-            pushTheDamnThing(cfConnection, monoContext, appServiceManifest, cfAppName);
+            pushTheApp(cfConnection, monoContext, appServiceManifest, cfAppName);
 
-            // Lets do it stupid mono thing...
             monoContext.mono.subscribe().block();
 
             // Removing the in progress flag
@@ -204,9 +203,9 @@ public class CfPsbSingleton implements ServiceLifecycle {
         return name;
     }
 
-    private void pushTheDamnThing(CFConnection cf, MonoContext monoContext,
+    private void pushTheApp(CFConnection cf, MonoContext monoContext,
             DeployAppServiceManifestDTO appServiceManifest, String cfAppName) {
-        log.info("####### Pushing The damn Thing " + cfAppName);
+        log.info("####### Pushing the app " + cfAppName);
         Path appPath = getAppPath(appServiceManifest);
 
         // Pushy push
