@@ -22,7 +22,7 @@ import com.emc.microservice.standalone.web.UndertowWebServerConfiguration;
 import com.emc.microservice.webclient.WebAPIResolver;
 import com.emc.ocopea.demo.model.Service;
 import com.emc.ocopea.devtools.checkstyle.NoJavadoc;
-import com.emc.ocopea.hackathon.CloudFoundryClientResourceConfiguration;
+import com.emc.ocopea.cfmanager.CloudFoundryClientResourceConfiguration;
 import com.emc.ocopea.hub.application.HubWebApi;
 import com.emc.ocopea.hub.application.StopAppCommandArgs;
 import com.emc.ocopea.hub.repository.HubRepositorySchema;

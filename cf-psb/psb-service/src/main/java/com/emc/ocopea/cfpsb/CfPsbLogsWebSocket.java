@@ -2,9 +2,9 @@
 package com.emc.ocopea.cfpsb;
 
 import com.emc.microservice.Context;
-import com.emc.ocopea.hackathon.CFConnection;
-import com.emc.ocopea.hackathon.CloudFoundryClientManagedResource;
-import com.emc.ocopea.hackathon.CloudFoundryClientResourceDescriptor;
+import com.emc.ocopea.cfmanager.CFConnection;
+import com.emc.ocopea.cfmanager.CloudFoundryClientManagedResource;
+import com.emc.ocopea.cfmanager.CloudFoundryClientResourceDescriptor;
 import com.emc.ocopea.psb.PSBLogMessageDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.cloudfoundry.doppler.DopplerClient;
