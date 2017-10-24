@@ -3,7 +3,7 @@ package com.emc.ocopea.cfpsb;
 
 import com.emc.microservice.MicroService;
 import com.emc.microservice.MicroServiceInitializationHelper;
-import com.emc.ocopea.hackathon.CloudFoundryClientResourceDescriptor;
+import com.emc.ocopea.cfmanager.CloudFoundryClientResourceDescriptor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

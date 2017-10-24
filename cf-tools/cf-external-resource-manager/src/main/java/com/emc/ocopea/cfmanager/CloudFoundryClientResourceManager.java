@@ -1,6 +1,6 @@
 // Copyright (c) [2017] Dell Inc. or its subsidiaries. All Rights Reserved.
  
-package com.emc.ocopea.hackathon;
+package com.emc.ocopea.cfmanager;
 
 import com.emc.microservice.Context;
 import com.emc.microservice.health.HealthCheck;
