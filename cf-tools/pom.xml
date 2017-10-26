@@ -20,15 +20,4 @@
     	<module>cf-apps</module>
     	<module>client</module>
     </modules>
-
-    <!-- must repeat repository on all root poms so maven can locate the ocopea parent pom -->
-    <repositories>
-        <repository>
-            <id>ocopea-dependencies</id>
-            <name>dependencies</name>
-            <url>https://raw.githubusercontent.com/ocopea/artifactory/repository/</url>
-        </repository>
-    </repositories>
-
-
 </project>

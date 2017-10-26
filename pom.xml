@@ -34,10 +34,10 @@
     </modules>
 
     <repositories>
-        <repository>
-            <id>ocopea-dependencies</id>
-            <name>dependencies</name>
-            <url>https://raw.githubusercontent.com/ocopea/artifactory/repository/</url>
+	<repository>
+            <id>bintray-ocopea-central</id>
+            <name>bintray</name>
+            <url>https://dl.bintray.com/ocopea/central</url>
         </repository>
     </repositories>
 

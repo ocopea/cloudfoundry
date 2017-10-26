@@ -31,13 +31,6 @@
     </dependencyManagement>
 
     <repositories>
-        <!-- must repeat repository on all root poms so maven can locate the ocopea parent pom -->
-        <repository>
-            <id>ocopea-dependencies</id>
-            <name>dependencies</name>
-            <url>https://raw.githubusercontent.com/ocopea/artifactory/repository/</url>
-        </repository>
-
         <!-- Adding spring repo for using the cf client -->
         <repository>
             <id>spring-milestone</id>
