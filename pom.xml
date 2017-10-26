@@ -10,8 +10,8 @@
 
 
     <properties>
-        <ocopea.orcs.version>0.1-SNAPSHOT</ocopea.orcs.version>
-        <ocopea.mysql-dsb.version>0.1-SNAPSHOT</ocopea.mysql-dsb.version>
+        <ocopea.orcs.version>0.1</ocopea.orcs.version>
+        <ocopea.mysql-dsb.version>0.1</ocopea.mysql-dsb.version>
         <ocopea.fscrb.version>0.1</ocopea.fscrb.version>
         <microservice.api.version>1.0</microservice.api.version>
         <microservice.runtime.version>0.1</microservice.runtime.version>
