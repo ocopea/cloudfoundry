@@ -182,8 +182,11 @@
             </plugins>
         </pluginManagement>
     </build>
-
-
-
-
+    <distributionManagement>
+	<repository>
+	    <id>bintray-ocopea-central</id>
+	    <name>ocopea-central</name>
+            <url>https://api.bintray.com/maven/ocopea/central/cloudfoundry/;publish=1</url>
+	 </repository>
+    </distributionManagement>
 </project>
